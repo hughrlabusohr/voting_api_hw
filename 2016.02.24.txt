@@ -1,0 +1,698 @@
+Candidate.create!(name: "Rand Paul", hometown: "Lake Jackson, TX", district: 1, party: "Republican")
+    Candidate.create!(name: "Marco Rubio", hometown: "Miami, FL", district: "2", party: "Republican")
+    Candidate.create!(name: "Bernie Sanders", hometown: "New York City, NY", district: "3", party: "Democrat")
+    Candidate.create!(name: "Hillary Clinton", hometown: "Park Ridge, IL", district: "3", party: "Democrat")
+
+    git commit * -m "3rd Commit. Fixed careless errors made when making associations/relationships that were discovered upon running my first test. Ran tests via bin/rake test and began my tdd in earnest. Right now I have 2 tests for my candidate model, and 1 each for voters and votes. Due to lack of experience with validations and associations, this has become an issue and I'm pretty sure that my final submission may come up short in this area. Will return to testing later."
+
+    → bin/rails generate model Candidates name:string hometown:string district:integer party:string
+Running via Spring preloader in process 98788
+[WARNING] The model name 'Candidates' was recognized as a plural, using the singular 'Candidate' instead. Override with --force-plural or setup custom inflection rules for this noun before running the generator.
+      invoke  active_record
+      create    db/migrate/20160224061603_create_candidates.rb
+      create    app/models/candidate.rb
+      invoke    test_unit
+      create      test/models/candidate_test.rb
+      create      test/fixtures/candidates.yml
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rails generate model Voter name:string party:string token:string
+Running via Spring preloader in process 98883
+      invoke  active_record
+      create    db/migrate/20160224061722_create_voters.rb
+      create    app/models/voter.rb
+      invoke    test_unit
+      create      test/models/voter_test.rb
+      create      test/fixtures/voters.yml
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rails generate model Vote voter_id:string candidate_id
+Running via Spring preloader in process 99265
+      invoke  active_record
+      create    db/migrate/20160224062149_create_votes.rb
+      create    app/models/vote.rb
+      invoke    test_unit
+      create      test/models/vote_test.rb
+      create      test/fixtures/votes.yml
+[hughrobertlabusohrthe2nd:voting_api]
+→ atom .
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake db:migrate
+Running via Spring preloader in process 5572
+== 20160224061603 CreateCandidates: migrating =================================
+-- create_table(:candidates)
+   -> 0.0019s
+== 20160224061603 CreateCandidates: migrated (0.0023s) ========================
+
+== 20160224061722 CreateVoters: migrating =====================================
+-- create_table(:voters)
+   -> 0.0019s
+== 20160224061722 CreateVoters: migrated (0.0020s) ============================
+
+== 20160224062149 CreateVotes: migrating ======================================
+-- create_table(:votes)
+   -> 0.0014s
+== 20160224062149 CreateVotes: migrated (0.0015s) =============================
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.gitignore
+	app/models/candidate.rb
+	app/models/vote.rb
+	app/models/voter.rb
+	db/migrate/
+	db/schema.rb
+	test/fixtures/candidates.yml
+	test/fixtures/voters.yml
+	test/fixtures/votes.yml
+	test/models/candidate_test.rb
+	test/models/vote_test.rb
+	test/models/voter_test.rb
+
+nothing added to commit but untracked files present (use "git add" to track)
+[hughrobertlabusohrthe2nd:voting_api]
+→ git add *
+The following paths are ignored by one of your .gitignore files:
+tmp
+Use -f if you really want to add them.
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   app/models/candidate.rb
+	new file:   app/models/vote.rb
+	new file:   app/models/voter.rb
+	new file:   db/migrate/20160224061603_create_candidates.rb
+	new file:   db/migrate/20160224061722_create_voters.rb
+	new file:   db/migrate/20160224062149_create_votes.rb
+	new file:   db/schema.rb
+	new file:   test/fixtures/candidates.yml
+	new file:   test/fixtures/voters.yml
+	new file:   test/fixtures/votes.yml
+	new file:   test/models/candidate_test.rb
+	new file:   test/models/vote_test.rb
+	new file:   test/models/voter_test.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.gitignore
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit * -m "Second Commit. Changes since last commit: 1)Used bin/rails generate model to create classes for candidate, voter, and vote with all the attributes specified in the hw assignment. 2)Migrated via bin/rake db:migrate to run all the migrations in the migrate folder that were generated when I ran bin/rails generate from before. 3)Modified my models located in the app folder to reflect the relationships and associations for each class."
+error: pathspec 'tmp' did not match any file(s) known to git.
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   app/models/candidate.rb
+	new file:   app/models/vote.rb
+	new file:   app/models/voter.rb
+	new file:   db/migrate/20160224061603_create_candidates.rb
+	new file:   db/migrate/20160224061722_create_voters.rb
+	new file:   db/migrate/20160224062149_create_votes.rb
+	new file:   db/schema.rb
+	new file:   test/fixtures/candidates.yml
+	new file:   test/fixtures/voters.yml
+	new file:   test/fixtures/votes.yml
+	new file:   test/models/candidate_test.rb
+	new file:   test/models/vote_test.rb
+	new file:   test/models/voter_test.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.gitignore
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 10636
+Running via Spring preloader in process 10638
+Run options: --seed 40964
+
+# Running:
+
+
+
+Finished in 0.002139s, 0.0000 runs/s, 0.0000 assertions/s.
+
+0 runs, 0 assertions, 0 failures, 0 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 12471
+Run options: --seed 47191
+
+# Running:
+
+E
+
+Fabulous run in 0.010663s, 93.7857 runs/s, 0.0000 assertions/s.
+
+  1) Error:
+CandidateTest#test_candidate_exists:
+NameError: undefined local variable or method `vote' for #<Class:0x007fdcc2f86938>
+    app/models/voter.rb:2:in `<class:Voter>'
+    app/models/voter.rb:1:in `<top (required)>'
+
+1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 12611
+Run options: --seed 12125
+
+# Running:
+
+E
+
+Fabulous run in 0.008144s, 122.7903 runs/s, 0.0000 assertions/s.
+
+  1) Error:
+CandidateTest#test_candidate_exists:
+NoMethodError: undefined method `a' for #<Class:0x007fdcc5d78c60>
+    app/models/voter.rb:2:in `<class:Voter>'
+    app/models/voter.rb:1:in `<top (required)>'
+
+1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 12670
+Run options: --seed 61529
+
+# Running:
+
+E
+
+Fabulous run in 0.008073s, 123.8740 runs/s, 0.0000 assertions/s.
+
+  1) Error:
+CandidateTest#test_candidate_exists:
+NoMethodError: undefined method `has_a' for #<Class:0x007fdcc2619fd0>
+Did you mean?  has_many
+               has_one
+               has_secure_password
+               hash
+               has_and_belongs_to_many
+               Hash
+    app/models/voter.rb:2:in `<class:Voter>'
+    app/models/voter.rb:1:in `<top (required)>'
+
+1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 12782
+Run options: --seed 17558
+
+# Running:
+
+E
+
+Fabulous run in 0.060617s, 16.4969 runs/s, 0.0000 assertions/s.
+
+  1) Error:
+CandidateTest#test_candidate_exists:
+NameError: undefined local variable or method `candidate' for #<CandidateTest:0x007fdcc24a35e8>
+Did you mean?  candidates
+    test/models/candidate_test.rb:15:in `block in <class:CandidateTest>'
+
+1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 13205
+Run options: --seed 26068
+
+# Running:
+
+E
+
+Fabulous run in 0.043958s, 22.7488 runs/s, 0.0000 assertions/s.
+
+  1) Error:
+CandidateTest#test_candidate_exists:
+NameError: undefined local variable or method `candidate' for #<CandidateTest:0x007fdcc5ab3a48>
+Did you mean?  candidates
+    test/models/candidate_test.rb:12:in `block in <class:CandidateTest>'
+
+1 runs, 0 assertions, 0 failures, 1 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 13446
+Run options: --seed 3355
+
+# Running:
+
+.
+
+Fabulous run in 0.044322s, 22.5619 runs/s, 45.1238 assertions/s.
+
+1 runs, 2 assertions, 0 failures, 0 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 14535
+Run options: --seed 34670
+
+# Running:
+
+.E
+
+Fabulous run in 0.059336s, 33.7063 runs/s, 33.7063 assertions/s.
+
+  1) Error:
+CandidateTest#test_candidate_may_drop_out:
+NameError: undefined local variable or method `jeb' for #<CandidateTest:0x007fdcc59cb608>
+    test/models/candidate_test.rb:20:in `block in <class:CandidateTest>'
+
+2 runs, 2 assertions, 0 failures, 1 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 14582
+Run options: --seed 48521
+
+# Running:
+
+..
+
+Fabulous run in 0.057384s, 34.8528 runs/s, 104.5584 assertions/s.
+
+2 runs, 6 assertions, 0 failures, 0 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 15993
+Run options: --seed 31607
+
+# Running:
+
+.F..
+
+Fabulous run in 0.085122s, 46.9915 runs/s, 117.4787 assertions/s.
+
+  1) Failure:
+VoteTest#test_vote_authenticity [/Users/hughrobertlabusohrthe2nd/Desktop/TIY/WEEK_4_APIs_AND_RAILS_CONTROLLERS/WEEK_4_2016.02.23.TUE_RAILS_AND_HTML_VERBS/HW/voting_api/test/models/vote_test.rb:7]:
+Expected: "1"
+  Actual: 1
+
+4 runs, 10 assertions, 1 failures, 0 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rake test
+Running via Spring preloader in process 16044
+Run options: --seed 12326
+
+# Running:
+
+....
+
+Fabulous run in 0.098841s, 40.4691 runs/s, 101.1726 assertions/s.
+
+4 runs, 10 assertions, 0 failures, 0 errors, 0 skips
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   app/models/candidate.rb
+	new file:   app/models/vote.rb
+	new file:   app/models/voter.rb
+	new file:   db/migrate/20160224061603_create_candidates.rb
+	new file:   db/migrate/20160224061722_create_voters.rb
+	new file:   db/migrate/20160224062149_create_votes.rb
+	new file:   db/schema.rb
+	new file:   test/fixtures/candidates.yml
+	new file:   test/fixtures/voters.yml
+	new file:   test/fixtures/votes.yml
+	new file:   test/models/candidate_test.rb
+	new file:   test/models/vote_test.rb
+	new file:   test/models/voter_test.rb
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   app/models/vote.rb
+	modified:   app/models/voter.rb
+	modified:   test/models/candidate_test.rb
+	modified:   test/models/vote_test.rb
+	modified:   test/models/voter_test.rb
+	modified:   test/test_helper.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.gitignore
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git add *
+The following paths are ignored by one of your .gitignore files:
+tmp
+Use -f if you really want to add them.
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   app/models/candidate.rb
+	new file:   app/models/vote.rb
+	new file:   app/models/voter.rb
+	new file:   db/migrate/20160224061603_create_candidates.rb
+	new file:   db/migrate/20160224061722_create_voters.rb
+	new file:   db/migrate/20160224062149_create_votes.rb
+	new file:   db/schema.rb
+	new file:   test/fixtures/candidates.yml
+	new file:   test/fixtures/voters.yml
+	new file:   test/fixtures/votes.yml
+	new file:   test/models/candidate_test.rb
+	new file:   test/models/vote_test.rb
+	new file:   test/models/voter_test.rb
+	modified:   test/test_helper.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.gitignore
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit * -m "3rd Commit. Fixed careless errors made when making associations/relationships that were discovered upon running my first test. Ran tests via bin/rake test and began my tdd in earnest. Right now I have 2 tests for my candidate model, and 1 each for voters and votes. Due to lack of experience with validations and associations, this has become an issue and I'm pretty sure that my final submission may come up short in this area. Will return to testing later."
+error: pathspec 'tmp' did not match any file(s) known to git.
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   app/models/candidate.rb
+	new file:   app/models/vote.rb
+	new file:   app/models/voter.rb
+	new file:   db/migrate/20160224061603_create_candidates.rb
+	new file:   db/migrate/20160224061722_create_voters.rb
+	new file:   db/migrate/20160224062149_create_votes.rb
+	new file:   db/schema.rb
+	new file:   test/fixtures/candidates.yml
+	new file:   test/fixtures/voters.yml
+	new file:   test/fixtures/votes.yml
+	new file:   test/models/candidate_test.rb
+	new file:   test/models/vote_test.rb
+	new file:   test/models/voter_test.rb
+	modified:   test/test_helper.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	.gitignore
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git log
+commit b26528b380b8680696b61e6d46afb74a1b1c270c
+Author: Hugh Robert Labusohr The 2nd <hughlabusohr@mac.com>
+Date:   Wed Feb 24 01:14:16 2016 -0500
+
+    initial commit - created the blank-slate template for the voting api rails application by running rails new voting_api app
+[hughrobertlabusohrthe2nd:voting_api]
+→ git add .gitignore
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   .gitignore
+	new file:   app/models/candidate.rb
+	new file:   app/models/vote.rb
+	new file:   app/models/voter.rb
+	new file:   db/migrate/20160224061603_create_candidates.rb
+	new file:   db/migrate/20160224061722_create_voters.rb
+	new file:   db/migrate/20160224062149_create_votes.rb
+	new file:   db/schema.rb
+	new file:   test/fixtures/candidates.yml
+	new file:   test/fixtures/voters.yml
+	new file:   test/fixtures/votes.yml
+	new file:   test/models/candidate_test.rb
+	new file:   test/models/vote_test.rb
+	new file:   test/models/voter_test.rb
+	modified:   test/test_helper.rb
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit .gitignore -m "I just realized my commits weren't posting bc of an error kicked back by not committing my .gitignore. DOH!"
+-bash: !": event not found
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   .gitignore
+	new file:   app/models/candidate.rb
+	new file:   app/models/vote.rb
+	new file:   app/models/voter.rb
+	new file:   db/migrate/20160224061603_create_candidates.rb
+	new file:   db/migrate/20160224061722_create_voters.rb
+	new file:   db/migrate/20160224062149_create_votes.rb
+	new file:   db/schema.rb
+	new file:   test/fixtures/candidates.yml
+	new file:   test/fixtures/voters.yml
+	new file:   test/fixtures/votes.yml
+	new file:   test/models/candidate_test.rb
+	new file:   test/models/vote_test.rb
+	new file:   test/models/voter_test.rb
+	modified:   test/test_helper.rb
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit .gitignore -m "so not adding & committing .gitignore caused none of my commits to post and I just realized this"
+[master 21633eb] so not adding & committing .gitignore caused none of my commits to post and I just realized this
+ 1 file changed, 17 insertions(+)
+ create mode 100644 .gitignore
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   app/models/candidate.rb
+	new file:   app/models/vote.rb
+	new file:   app/models/voter.rb
+	new file:   db/migrate/20160224061603_create_candidates.rb
+	new file:   db/migrate/20160224061722_create_voters.rb
+	new file:   db/migrate/20160224062149_create_votes.rb
+	new file:   db/schema.rb
+	new file:   test/fixtures/candidates.yml
+	new file:   test/fixtures/voters.yml
+	new file:   test/fixtures/votes.yml
+	new file:   test/models/candidate_test.rb
+	new file:   test/models/vote_test.rb
+	new file:   test/models/voter_test.rb
+	modified:   test/test_helper.rb
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit * -m "Was supposed to be my 3rd Commit. See readme.md for my commit messages for what would have been my 2nd commit had I realized that not adding/committing my .gitignore file had fubared my attempt to commit. Alas, here I Fixed careless errors made when making associations/relationships that were discovered upon running my first test. Ran tests via bin/rake test and began my tdd in earnest. Right now I have 2 tests for my candidate model, and 1 each for voters and votes. Due to lack of experience with validations and associations, this has become an issue and I'm pretty sure that my final submission may come up short in this area. Will return to testing later."
+error: pathspec 'tmp' did not match any file(s) known to git.
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit -m "Was supposed to be my 3rd Commit. See readme.md for my commit messages for what would have been my 2nd commit had I realized that not adding/committing my .gitignore file had fubared my attempt to commit. Alas, here I Fixed careless errors made when making associations/relationships that were discovered upon running my first test. Ran tests via bin/rake test and began my tdd in earnest. Right now I have 2 tests for my candidate model, and 1 each for voters and votes. Due to lack of experience with validations and associations, this has become an issue and I'm pretty sure that my final submission may come up short in this area. Will return to testing later."
+[master cc8df48] Was supposed to be my 3rd Commit. See readme.md for my commit messages for what would have been my 2nd commit had I realized that not adding/committing my .gitignore file had fubared my attempt to commit. Alas, here I Fixed careless errors made when making associations/relationships that were discovered upon running my first test. Ran tests via bin/rake test and began my tdd in earnest. Right now I have 2 tests for my candidate model, and 1 each for voters and votes. Due to lack of experience with validations and associations, this has become an issue and I'm pretty sure that my final submission may come up short in this area. Will return to testing later.
+ 14 files changed, 164 insertions(+)
+ create mode 100644 app/models/candidate.rb
+ create mode 100644 app/models/vote.rb
+ create mode 100644 app/models/voter.rb
+ create mode 100644 db/migrate/20160224061603_create_candidates.rb
+ create mode 100644 db/migrate/20160224061722_create_voters.rb
+ create mode 100644 db/migrate/20160224062149_create_votes.rb
+ create mode 100644 db/schema.rb
+ create mode 100644 test/fixtures/candidates.yml
+ create mode 100644 test/fixtures/voters.yml
+ create mode 100644 test/fixtures/votes.yml
+ create mode 100644 test/models/candidate_test.rb
+ create mode 100644 test/models/vote_test.rb
+ create mode 100644 test/models/voter_test.rb
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+nothing to commit, working directory clean
+[hughrobertlabusohrthe2nd:voting_api]
+→ bin/rails generate controller Candidates index show create
+Running via Spring preloader in process 17956
+      create  app/controllers/candidates_controller.rb
+       route  get 'candidates/create'
+       route  get 'candidates/show'
+       route  get 'candidates/index'
+      invoke  erb
+      create    app/views/candidates
+      create    app/views/candidates/index.html.erb
+      create    app/views/candidates/show.html.erb
+      create    app/views/candidates/create.html.erb
+      invoke  test_unit
+      create    test/controllers/candidates_controller_test.rb
+      invoke  helper
+      create    app/helpers/candidates_helper.rb
+      invoke    test_unit
+      invoke  assets
+      invoke    coffee
+      create      app/assets/javascripts/candidates.coffee
+      invoke    scss
+      create      app/assets/stylesheets/candidates.scss
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   config/routes.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/assets/javascripts/candidates.coffee
+	app/assets/stylesheets/candidates.scss
+	app/controllers/candidates_controller.rb
+	app/helpers/candidates_helper.rb
+	app/views/candidates/
+	test/controllers/candidates_controller_test.rb
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[hughrobertlabusohrthe2nd:voting_api]
+→ git add config/routes.rb
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   config/routes.rb
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	app/assets/javascripts/candidates.coffee
+	app/assets/stylesheets/candidates.scss
+	app/controllers/candidates_controller.rb
+	app/helpers/candidates_helper.rb
+	app/views/candidates/
+	test/controllers/candidates_controller_test.rb
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit -m "changes made: created candidates controller with index,show, and create actions using bin/rails generate controller. Got everything functional and up to hw spec except create."
+[master e8b6ef0] changes made: created candidates controller with index,show, and create actions using bin/rails generate controller. Got everything functional and up to hw spec except create.
+ 1 file changed, 6 insertions(+)
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	README.md
+	app/assets/javascripts/candidates.coffee
+	app/assets/stylesheets/candidates.scss
+	app/controllers/candidates_controller.rb
+	app/helpers/candidates_helper.rb
+	app/views/candidates/
+	test/controllers/candidates_controller_test.rb
+
+nothing added to commit but untracked files present (use "git add" to track)
+[hughrobertlabusohrthe2nd:voting_api]
+→ git add
+Nothing specified, nothing added.
+Maybe you wanted to say 'git add .'?
+[hughrobertlabusohrthe2nd:voting_api]
+→ git add *
+The following paths are ignored by one of your .gitignore files:
+tmp
+Use -f if you really want to add them.
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   README.md
+	new file:   app/assets/javascripts/candidates.coffee
+	new file:   app/assets/stylesheets/candidates.scss
+	new file:   app/controllers/candidates_controller.rb
+	new file:   app/helpers/candidates_helper.rb
+	new file:   app/views/candidates/create.html.erb
+	new file:   app/views/candidates/index.html.erb
+	new file:   app/views/candidates/show.html.erb
+	new file:   test/controllers/candidates_controller_test.rb
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit * -m "Added readme.md"
+error: pathspec 'tmp' did not match any file(s) known to git.
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   README.md
+	new file:   app/assets/javascripts/candidates.coffee
+	new file:   app/assets/stylesheets/candidates.scss
+	new file:   app/controllers/candidates_controller.rb
+	new file:   app/helpers/candidates_helper.rb
+	new file:   app/views/candidates/create.html.erb
+	new file:   app/views/candidates/index.html.erb
+	new file:   app/views/candidates/show.html.erb
+	new file:   test/controllers/candidates_controller_test.rb
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit .gitignore -m "no message"
+On branch master
+Untracked files:
+	README.md
+	app/assets/javascripts/candidates.coffee
+	app/assets/stylesheets/candidates.scss
+	app/controllers/candidates_controller.rb
+	app/helpers/candidates_helper.rb
+	app/views/candidates/
+	test/controllers/candidates_controller_test.rb
+
+nothing added to commit but untracked files present
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit * "added readme.md"
+error: pathspec 'tmp' did not match any file(s) known to git.
+error: pathspec 'added readme.md' did not match any file(s) known to git.
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit * -m "added readme.md"
+error: pathspec 'tmp' did not match any file(s) known to git.
+[hughrobertlabusohrthe2nd:voting_api]
+→ git status
+On branch master
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	new file:   README.md
+	new file:   app/assets/javascripts/candidates.coffee
+	new file:   app/assets/stylesheets/candidates.scss
+	new file:   app/controllers/candidates_controller.rb
+	new file:   app/helpers/candidates_helper.rb
+	new file:   app/views/candidates/create.html.erb
+	new file:   app/views/candidates/index.html.erb
+	new file:   app/views/candidates/show.html.erb
+	new file:   test/controllers/candidates_controller_test.rb
+
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit README.md -m "added readme.md"
+[master 4fbd9fa] added readme.md
+ 1 file changed, 16 insertions(+)
+ create mode 100644 README.md
+[hughrobertlabusohrthe2nd:voting_api]
+→ git commit app/controllers/candidates_controller.rb -m "not sure why it says this changed."
+[master 1019d41] not sure why it says this changed.
+ 1 file changed, 14 insertions(+)
+ create mode 100644 app/controllers/candidates_controller.rb
+[hughrobertlabusohrthe2nd:voting_api]
+→ git remote add origin https://github.com/hughrlabusohr/voting_api_hw.git
+[hughrobertlabusohrthe2nd:voting_api]
+→ git push -u origin master
+Counting objects: 101, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (90/90), done.
+Writing objects: 100% (101/101), 22.17 KiB | 0 bytes/s, done.
+Total 101 (delta 13), reused 0 (delta 0)
+To https://github.com/hughrlabusohr/voting_api_hw.git
+ * [new branch]      master -> master
+Branch master set up to track remote branch master from origin.
+[hughrobertlabusohrthe2nd:voting_api]
+→
